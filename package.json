@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/Joel-Santos/turma115-UC10#readme",
   "devDependencies": {
-    "jest": "^30.0.3"
+    "jest": "^30.0.4"
   },
   "dependencies": {
     "dotenv": "^17.2.0",
