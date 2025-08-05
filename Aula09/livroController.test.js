@@ -1,6 +1,6 @@
-const Livro = require('../../src/modules/livro/models/livroModel');
-const { sequelize } = require('../../src/config/configDB');
-const app = require('../../index');
+const Livro = require('../src/modules/livro/models/livroModel');
+const { sequelize } = require('../src/config/configDB');
+const app = require('../index');
 const req = require('supertest');
 
 beforeAll(async () => {
