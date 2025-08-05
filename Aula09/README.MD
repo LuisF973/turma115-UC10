@@ -19,10 +19,11 @@ Nesta atividade, você deverá desenvolver uma API REST completa com base em um 
 
 3. **Utilize Sequelize para mapear a entidade `Livro`** no banco de dados PostgreSQL com os seguintes campos:
    - `id` (chave primária)
-   - `titulo` (string obrigatória, entre 3 e 100 caracteres)
-   - `autor` (string obrigatória, entre 3 e 100 caracteres)
-   - `anoPublicacao` (número inteiro, obrigatório, maior que 0)
-   - `disponivel` (booleano, obrigatório)
+   - `titulo` 
+   - `autor` 
+   - `ano_publicacao` 
+   - `genero`
+   - `preco`
 
 4. **Execute os testes frequentemente durante o desenvolvimento**.
    - Utilize o comando `npx jest livroController.test.js` para validar se sua implementação está conforme os testes.
