@@ -14,23 +14,23 @@ afterAll(async () => {
 describe('Livro API', () => {
     let livroId;
 
-    // describe('Cadastro', () => {
-    //     test('✅ Deve criar um livro com sucesso', async () => {
-    //         const response = await req(app).post('/livros').send({
-    //             titulo: 'O Senhor dos Anéis',
-    //             autor: 'J.R.R. Tolkien',
-    //             ano_publicacao: 1954,
-    //             genero: 'Fantasia',
-    //             preco: 59.9
-    //         });
+    describe('Cadastro', () => {
+        test('✅ Deve criar um livro com sucesso', async () => {
+            const response = await req(app).post('/livros').send({
+                titulo: 'O Senhor dos Anéis',
+                autor: 'J.R.R. Tolkien',
+                ano_publicacao: 1954,
+                genero: 'Fantasia',
+                preco: 59.9
+            });
 
-    //         expect(response.statusCode).toBe(201);
-    //         expect(response.body.livro).toHaveProperty('id');
-    //         expect(response.body.livro.titulo).toBe('O Senhor dos Anéis');
-    //         expect(response.body).toHaveProperty('msg', 'Livro criado com sucesso');
-    //         livroId = response.body.livro.id;
-    //     });
-    // });
+            expect(response.statusCode).toBe(201);
+            expect(response.body.livro).toHaveProperty('id');
+            expect(response.body.livro.titulo).toBe('O Senhor dos Anéis');
+            expect(response.body).toHaveProperty('msg', 'Livro criado com sucesso');
+            livroId = response.body.livro.id;
+        });
+    });
 
     describe('Validação de campos', () => {
         test('❌ Não deve criar livro com campos vazios', async () => {
@@ -67,7 +67,6 @@ describe('Livro API', () => {
                 genero: 'Drama',
                 preco: -10
             });
-
             expect(response.statusCode).toBe(400);
             expect(response.body).toHaveProperty('msg', 'Preço deve ser maior que zero');
         });

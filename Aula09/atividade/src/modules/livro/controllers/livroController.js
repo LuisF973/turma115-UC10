@@ -44,20 +44,24 @@ class LivroController {
             "Arte",
             "Fotografia"
           ];
-        const sqlInjectionPattern = /('|--|;|\/\*|\*\/|DROP|SELECT|INSERT|UPDATE|DELETE|UNION|--|#|OR|AND|=|LIKE|%|--|\bFROM\b|\bWHERE\b|\bHAVING\b)/i;
+          const sqlInjectionPattern = /^[a-zA-Z0-9À-ÿ.,:!?()\- \s]+$/i;
+
           
         try {
             const{titulo, autor, ano_publicacao, genero, preco} = req.body
+            console.log(typeof preco);
+            
+
             if(!titulo || !autor || !ano_publicacao || !genero || !preco){
                 return res.status(400).json({msg:"Todos os campos são obrigatórios"})
             }
-            if(!Number.isInteger(ano_publicacao) || ano_publicacao<1000 || ano_publicacao>Number.parseInt(Date.getFullYear())){
+            if(!Number.isInteger(ano_publicacao) || ano_publicacao<1000 || ano_publicacao>new Date().getFullYear()){
                 return res.status(400).json({msg:"Ano de publicação deve ser um número"})
             }
-            if(typeof preco !== 'number' || preco<=0){
+            if(preco<=0){
                 return res.status(400).json({msg:"Preço deve ser maior que zero"})
             }
-            if(titulo.lenght<2){
+            if(titulo.length<2){
                 return res.status(400).json({msg:"Título deve ter pelo menos 2 caracteres"})
             }
             if(!generosLivros.includes(genero)){
@@ -72,18 +76,33 @@ class LivroController {
             if(sqlInjectionPattern.test(autor)){
                 return res.status(400).json({msg:"Autor inválido"})
             }
-            
-            
-
-
+            if(sqlInjectionPattern.test(ano_publicacao)){
+                return res.status(400).json({msg:"Ano de publicação deve ser um número"})
+            }
+            if(sqlInjectionPattern.test(preco)){
+                return res.status(400).json({msg:"Preço deve ser um número"})
+            }
             const livro = await LivroModel.create({titulo, autor, ano_publicacao, genero, preco})
             res.status(201).json({msg:"Livro criado com sucesso", livro})
         } catch (error) {
-            
+            res.status(500).json({msg:"Erro interno", error})
+        }     
+    }
+
+    static async listar(req, res){
+        try {
+            const livros = await LivroModel.findAll();
+            res.status(200).json(livros)
+
+        } catch (error) {
+             res.status(500).json({msg:"Erro interno", error})
         }
 
-        
     }
+
+
+
+
 
 }
 
