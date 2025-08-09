@@ -186,10 +186,10 @@ describe('Livro API', () => {
             expect(response.body.length).toBeGreaterThan(0);
         });
 
-        test('✅ Deve buscar livro por nome', async () => {
+        test('✅ Deve buscar livro por nome', async () => {         
             const response = await req(app).get('/livros/busca?titulo=Senhor');
             expect(response.statusCode).toBe(200);
-            expect(response.body.livro.titulo).toMatch(/Senhor/);
+            expect(response.body.livros[0].titulo).toMatch(/Senhor/);
             expect(response.body).toHaveProperty('msg', 'Livro encontrado');
         });
 
@@ -258,7 +258,7 @@ describe('Livro API', () => {
     describe('Exclusão', () => {
         test('✅ Deve deletar livro por ID', async () => {
             const response = await req(app).delete(`/livros/${livroId}`);
-            expect(response.statusCode).toBe(204);
+            expect(response.statusCode).toBe(200);
             expect(response.body).toHaveProperty('msg', 'Livro deletado com sucesso');
         });
 
