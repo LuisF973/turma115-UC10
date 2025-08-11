@@ -5,10 +5,10 @@ config:
       arrivalRate: 5
 scenarios:
   - flow:
-      - loop:
-          - get: 
+      # - loop:
+          - get:
               url: "/livros"
-          - post: 
+          - post:
               url: "/livros"
               json:
                 titulo: "Livro dia do estudante"
@@ -16,4 +16,10 @@ scenarios:
                 ano_publicacao: 2025
                 genero: "Aventura"
                 preco: 150.85
-        count: 100
+                capture:
+                  - json: "$.livro.id"
+                    as: "livroId"
+          - think: 5
+          - get:
+              url: "/livros/{{ livroId }}"
+        # count: 100
