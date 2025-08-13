@@ -1,0 +1,60 @@
+config:
+  target: "http://localhost:3000"
+  phases:
+    - duration: 30
+      arrivalRate: 5
+scenarios:
+  - flow:
+      # Etapa 1: Realizar login e capturar o token
+      - post:
+          url: "/auth/login"
+          json:
+            username: "seu_usuario"
+            password: "sua_senha"
+          capture:
+            - json: "$.token"  # Supondo que o token venha em um campo 'token' na resposta
+              as: "authToken"
+      
+      # Etapa 2: Usar o token capturado nas requisições subsequentes
+      - get:
+          url: "/livros"
+          headers:
+            Authorization: "Bearer {{ authToken }}"  # Usando o token capturado
+      - post:
+          url: "/livros"
+          json:
+            titulo: "Livro dia do estudante"
+            autor: "Artillery"
+            ano_publicacao: 2025
+            genero: "Aventura"
+            preco: 150.85
+          headers:
+            Authorization: "Bearer {{ authToken }}"
+          capture:
+            - json: "$.livro.id"
+              as: "livroId"
+      - get:
+          url: "/livros/{{ livroId }}"
+          headers:
+            Authorization: "Bearer {{ authToken }}"
+          capture:
+            - json: "$.livro.titulo"
+              as: "livroTitulo"
+      - put:
+          url: "/livros/{{ livroId }}"
+          json:
+            titulo: "Livro dia do estudante o retorno"
+            autor: "Joel Santos"
+            ano_publicacao: 2023
+            genero: "Terror"
+            preco: 250.85
+          headers:
+            Authorization: "Bearer {{ authToken }}"
+      - delete:
+          url: "/livros/{{ livroId }}"
+          headers:
+            Authorization: "Bearer {{ authToken }}"
+      - get:
+          url: "/livros/busca?titulo={{ livroTitulo }}"
+          headers:
+            Authorization: "Bearer {{ authToken }}"
