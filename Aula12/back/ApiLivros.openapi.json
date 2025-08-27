@@ -1,0 +1,443 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ApiLivros",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "tags": [],
+  "paths": {
+    "/livros": {
+      "get": {
+        "summary": "Listar livros",
+        "deprecated": false,
+        "description": "Endpoint para listar todos os livros",
+        "tags": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "title": "id do livro",
+                      "minimum": 1,
+                      "example": 1
+                    },
+                    "autor": {
+                      "type": "string",
+                      "minLength": 10,
+                      "maxLength": 100,
+                      "title": "Autor",
+                      "example": "luis felipe"
+                    },
+                    "titulo": {
+                      "type": "string",
+                      "minLength": 2,
+                      "maxLength": 150,
+                      "title": "titulo",
+                      "example": "O senhor dos aneis"
+                    },
+                    "ano_publicacao": {
+                      "type": "integer",
+                      "minimum": 1000,
+                      "title": "Ano Publicacao",
+                      "example": 1990
+                    },
+                    "genero": {
+                      "type": "string",
+                      "title": "Genero",
+                      "enum": [
+                        "Romance",
+                        "Ficção Científica",
+                        "Fantasia",
+                        "Mistério",
+                        "Suspense",
+                        "Terror",
+                        "Aventura",
+                        "Drama",
+                        "Histórico",
+                        "Biografia",
+                        "Autobiografia",
+                        "Poesia",
+                        "Humor",
+                        "Literatura Clássica",
+                        "Literatura Contemporânea",
+                        "Infantojuvenil",
+                        "Young Adult (YA)",
+                        "Distopia",
+                        "Realismo Mágico",
+                        "Crônicas",
+                        "Ensaios",
+                        "Autoajuda",
+                        "Espiritualidade",
+                        "Religião",
+                        "Filosofia",
+                        "Psicologia",
+                        "Ciências Sociais",
+                        "Política",
+                        "Economia",
+                        "Educação",
+                        "Tecnologia",
+                        "Negócios",
+                        "Direito",
+                        "Medicina",
+                        "Ecologia",
+                        "Viagens",
+                        "Gastronomia",
+                        "Arte",
+                        "Fotografia"
+                      ],
+                      "example": "Romance"
+                    },
+                    "preco": {
+                      "type": "number",
+                      "format": "float",
+                      "minimum": 0.1,
+                      "title": "Preço",
+                      "example": 5.5
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "autor",
+                    "titulo",
+                    "ano_publicacao",
+                    "genero",
+                    "preco"
+                  ]
+                },
+                "example": {
+                  "id": 1,
+                  "autor": "luis felipe",
+                  "titulo": "O senhor dos aneis",
+                  "ano_publicacao": 1990,
+                  "genero": "Romance",
+                  "preco": 5.5
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "post": {
+        "summary": "Cadastrar Livros",
+        "deprecated": false,
+        "description": "Deve cadastrar uma livro",
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "autor": {
+                    "type": "string",
+                    "minLength": 10,
+                    "maxLength": 100,
+                    "title": "Autor",
+                    "example": "luis felipe"
+                  },
+                  "titulo": {
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 150,
+                    "title": "titulo",
+                    "example": "O senhor dos aneis"
+                  },
+                  "ano_publicacao": {
+                    "type": "integer",
+                    "minimum": 1000,
+                    "title": "Ano Publicacao",
+                    "example": 1990
+                  },
+                  "genero": {
+                    "type": "string",
+                    "title": "Genero",
+                    "enum": [
+                      "Romance",
+                      "Ficção Científica",
+                      "Fantasia",
+                      "Mistério",
+                      "Suspense",
+                      "Terror",
+                      "Aventura",
+                      "Drama",
+                      "Histórico",
+                      "Biografia",
+                      "Autobiografia",
+                      "Poesia",
+                      "Humor",
+                      "Literatura Clássica",
+                      "Literatura Contemporânea",
+                      "Infantojuvenil",
+                      "Young Adult (YA)",
+                      "Distopia",
+                      "Realismo Mágico",
+                      "Crônicas",
+                      "Ensaios",
+                      "Autoajuda",
+                      "Espiritualidade",
+                      "Religião",
+                      "Filosofia",
+                      "Psicologia",
+                      "Ciências Sociais",
+                      "Política",
+                      "Economia",
+                      "Educação",
+                      "Tecnologia",
+                      "Negócios",
+                      "Direito",
+                      "Medicina",
+                      "Ecologia",
+                      "Viagens",
+                      "Gastronomia",
+                      "Arte",
+                      "Fotografia"
+                    ],
+                    "example": "Romance"
+                  },
+                  "preco": {
+                    "type": "number",
+                    "format": "float",
+                    "minimum": 0.1,
+                    "title": "Preço",
+                    "example": 5.5
+                  }
+                },
+                "required": [
+                  "autor",
+                  "titulo",
+                  "ano_publicacao",
+                  "genero",
+                  "preco"
+                ]
+              },
+              "example": {
+                "autor": "luis felipe",
+                "titulo": "O senhor dos aneis",
+                "ano_publicacao": 1990,
+                "genero": "Romance",
+                "preco": 5.5
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "autor": {
+                      "type": "string",
+                      "minLength": 10,
+                      "maxLength": 100,
+                      "title": "Autor",
+                      "example": "luis felipe"
+                    },
+                    "titulo": {
+                      "type": "string",
+                      "minLength": 2,
+                      "maxLength": 150,
+                      "title": "titulo",
+                      "example": "O senhor dos aneis"
+                    },
+                    "ano_publicacao": {
+                      "type": "integer",
+                      "minimum": 1000,
+                      "title": "Ano Publicacao",
+                      "example": 1990
+                    },
+                    "genero": {
+                      "type": "string",
+                      "title": "Genero",
+                      "enum": [
+                        "Romance",
+                        "Ficção Científica",
+                        "Fantasia",
+                        "Mistério",
+                        "Suspense",
+                        "Terror",
+                        "Aventura",
+                        "Drama",
+                        "Histórico",
+                        "Biografia",
+                        "Autobiografia",
+                        "Poesia",
+                        "Humor",
+                        "Literatura Clássica",
+                        "Literatura Contemporânea",
+                        "Infantojuvenil",
+                        "Young Adult (YA)",
+                        "Distopia",
+                        "Realismo Mágico",
+                        "Crônicas",
+                        "Ensaios",
+                        "Autoajuda",
+                        "Espiritualidade",
+                        "Religião",
+                        "Filosofia",
+                        "Psicologia",
+                        "Ciências Sociais",
+                        "Política",
+                        "Economia",
+                        "Educação",
+                        "Tecnologia",
+                        "Negócios",
+                        "Direito",
+                        "Medicina",
+                        "Ecologia",
+                        "Viagens",
+                        "Gastronomia",
+                        "Arte",
+                        "Fotografia"
+                      ],
+                      "example": "Romance"
+                    },
+                    "preco": {
+                      "type": "number",
+                      "format": "float",
+                      "minimum": 0.1,
+                      "title": "Preço",
+                      "example": 5.5
+                    }
+                  },
+                  "required": [
+                    "autor",
+                    "titulo",
+                    "ano_publicacao",
+                    "genero",
+                    "preco"
+                  ]
+                },
+                "example": {
+                  "autor": "luis felipe",
+                  "titulo": "O senhor dos aneis",
+                  "ano_publicacao": 1990,
+                  "genero": "Romance",
+                  "preco": 5.5
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "livro": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "id do livro",
+            "minimum": 1,
+            "example": 1
+          },
+          "autor": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 100,
+            "title": "Autor",
+            "example": "luis felipe"
+          },
+          "titulo": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 150,
+            "title": "titulo",
+            "example": "O senhor dos aneis"
+          },
+          "ano_publicacao": {
+            "type": "integer",
+            "minimum": 1000,
+            "title": "Ano Publicacao",
+            "example": 1990
+          },
+          "genero": {
+            "type": "string",
+            "title": "Genero",
+            "enum": [
+              "Romance",
+              "Ficção Científica",
+              "Fantasia",
+              "Mistério",
+              "Suspense",
+              "Terror",
+              "Aventura",
+              "Drama",
+              "Histórico",
+              "Biografia",
+              "Autobiografia",
+              "Poesia",
+              "Humor",
+              "Literatura Clássica",
+              "Literatura Contemporânea",
+              "Infantojuvenil",
+              "Young Adult (YA)",
+              "Distopia",
+              "Realismo Mágico",
+              "Crônicas",
+              "Ensaios",
+              "Autoajuda",
+              "Espiritualidade",
+              "Religião",
+              "Filosofia",
+              "Psicologia",
+              "Ciências Sociais",
+              "Política",
+              "Economia",
+              "Educação",
+              "Tecnologia",
+              "Negócios",
+              "Direito",
+              "Medicina",
+              "Ecologia",
+              "Viagens",
+              "Gastronomia",
+              "Arte",
+              "Fotografia"
+            ],
+            "example": "Romance"
+          },
+          "preco": {
+            "type": "number",
+            "format": "float",
+            "minimum": 0.1,
+            "title": "Preço",
+            "example": 5.5
+          }
+        },
+        "required": [
+          "id",
+          "autor",
+          "titulo",
+          "ano_publicacao",
+          "genero",
+          "preco"
+        ]
+      }
+    },
+    "securitySchemes": {}
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Amb. de Desenv."
+    }
+  ],
+  "security": []
+}
